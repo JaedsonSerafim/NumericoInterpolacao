@@ -6,7 +6,12 @@ namespace NumericoInterpolacao
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            double[] xs = new double[] { -1, 0, 2 },
+                ys = new double[] { 4, 1, -1 };
+            var lagrange = new Lagrange(xs, ys);
+            var polinomio = lagrange.CalcularPolinomio();
+            Console.WriteLine(polinomio);
+            Console.ReadKey();
         }
     }
 }
