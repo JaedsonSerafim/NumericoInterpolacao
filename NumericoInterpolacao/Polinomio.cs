@@ -14,6 +14,12 @@ namespace NumericoInterpolacao
 
         public double Calcular(double x) => Incognitas.Sum(y => y.Coeficiente * Math.Pow(x, y.Grau));
 
+        public Polinomio Primitiva => new Polinomio((from x in Incognitas
+                                                     select new Incognita(x.Grau + 1, x.Coeficiente / x.Grau)).ToArray());
+        public Polinomio Derivada => new Polinomio((from x in Incognitas
+                                                    where x.Grau != 0
+                                                    select new Incognita(x.Grau - 1, x.Coeficiente * x.Grau)).ToArray());
+
         public bool Vazio => (Incognitas?.Length ?? 0) == 0;
         int MaxGrau => (Incognitas?.Length ?? 0) == 0 ? 0 : Incognitas.Max(x => x.Grau);
         int MinGrau => (Incognitas?.Length ?? 0) == 0 ? 0 : Incognitas.Min(x => x.Grau);
@@ -58,7 +64,7 @@ namespace NumericoInterpolacao
             {
                 if (!primeiro)
                     retorno += item.Coeficiente >= 0 ? " + " : " - ";
-                retorno += $"{item.Coeficiente.ToString("F2").Replace("-", string.Empty)}*x^{item.Grau}";
+                retorno += $"{item.Coeficiente.ToString("e2").Replace("-", string.Empty)}*x^{item.Grau}";
                 primeiro = false;
             }
             return retorno;

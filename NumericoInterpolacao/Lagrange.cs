@@ -13,6 +13,7 @@ namespace NumericoInterpolacao
             if (xs.Length != ys.Length)
                 throw new ArgumentException("Vetores de comprimento diferente.");
 
+            
             Xs = xs;
             Ys = ys;
             Length = xs.Length;
