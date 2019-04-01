@@ -64,7 +64,9 @@ namespace NumericoInterpolacao
             {
                 if (!primeiro)
                     retorno += item.Coeficiente >= 0 ? " + " : " - ";
-                retorno += $"{item.Coeficiente.ToString("e2").Replace("-", string.Empty)}*x^{item.Grau}";
+                retorno += item.Coeficiente.ToString("e2").Replace("-", string.Empty);
+                if (item.Grau != 0)
+                    retorno += $"*x^{item.Grau}";
                 primeiro = false;
             }
             return retorno;
