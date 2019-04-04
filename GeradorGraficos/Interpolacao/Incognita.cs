@@ -1,4 +1,4 @@
-﻿namespace NumericoInterpolacao
+﻿namespace GeradorGraficos.Interpolacao
 {
     public struct Incognita
     {

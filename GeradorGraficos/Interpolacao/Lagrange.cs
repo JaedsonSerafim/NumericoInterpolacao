@@ -1,25 +1,10 @@
-﻿using System;
-
-namespace NumericoInterpolacao
+﻿namespace GeradorGraficos.Interpolacao
 {
-    public struct Lagrange
+    public sealed class Lagrange : MetodoInterpolacao
     {
-        readonly int Length;
-        readonly double[] Xs;
-        readonly double[] Ys;
+        public Lagrange(double[] xs, double[] ys) : base(xs, ys) { }
 
-        public Lagrange(double[] xs, double[] ys)
-        {
-            if (xs.Length != ys.Length)
-                throw new ArgumentException("Vetores de comprimento diferente.");
-
-            
-            Xs = xs;
-            Ys = ys;
-            Length = xs.Length;
-        }
-
-        public Polinomio CalcularPolinomio()
+        public override IFuncao CalcularPolinomio()
         {
             Polinomio somatorio = default(Polinomio);
             for (int i = 0; i < Length; i++)

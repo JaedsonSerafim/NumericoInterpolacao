@@ -1,0 +1,70 @@
+﻿<Page x:Class="GeradorGraficos.MainPage"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:lvc="using:LiveCharts.Uwp"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d"
+	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid Margin="16">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="400" />
+			<ColumnDefinition Width="16" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock TextWrapping="Wrap">Insira cada par x,y em cada linha e use apenas um espaço em branco entre o X e o Y.</TextBlock>
+		<RichEditBox x:Name="txtValores"
+					 Grid.Row="1"
+					 TextChanging="TextBox_TextChanging"
+					 VerticalAlignment="Top" />
+		<Grid Grid.Row="2">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<ComboBox Header="Método usado"
+					  Margin="0,0,0,16"
+					  HorizontalAlignment="Stretch"
+					  SelectedIndex="{x:Bind MetodoEscolhido, Mode=TwoWay}">
+				<ComboBoxItem>Lagrange</ComboBoxItem>
+				<ComboBoxItem>Mínimos Quadrados (Reta)</ComboBoxItem>
+				<ComboBoxItem>Mínimos Quadrados (Exponencial de base e)</ComboBoxItem>
+			</ComboBox>
+			<Button Grid.Row="1"
+					Click="Button_Click"
+					HorizontalAlignment="Stretch">Analisar pontos</Button>
+		</Grid>
+		<lvc:CartesianChart Grid.Column="2"
+							Grid.RowSpan="2"
+							Series="{x:Bind Pontos}"
+							Margin="16" />
+		<Grid Grid.Row="2"
+			  Grid.Column="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<TextBlock Grid.ColumnSpan="2"
+					   VerticalAlignment="Top">Função obtida: f(x) = <Run x:Name="txtFuncao" /></TextBlock>
+			<TextBlock Grid.Row="1"
+					   Grid.ColumnSpan="2">Desvio= <Run x:Name="txtDesvio" /></TextBlock>
+			<TextBox x:Name="txtValorX"
+					 Grid.Row="2"
+					 Header="Calcular f(x):"
+					 TextChanging="TxtValorX_TextChanging"></TextBox>
+			<TextBlock Grid.Column="1"
+					   Grid.Row="2"
+					   Margin="16,0,0,0">Valor calculado:<LineBreak /><Run x:Name="txtCalculado" /></TextBlock>
+		</Grid>
+	</Grid>
+</Page>

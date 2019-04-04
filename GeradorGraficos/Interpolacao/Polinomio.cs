@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-namespace NumericoInterpolacao
+namespace GeradorGraficos.Interpolacao
 {
-    public struct Polinomio
+    public struct Polinomio : IFuncao
     {
         Incognita[] Incognitas;
 

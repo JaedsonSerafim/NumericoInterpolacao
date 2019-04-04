@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "NumericoInterpolacao": {
-      "commandName": "Project",
-      "commandLineArgs": "0 5e-3 12e-3 18e-3 1 6.73e-3 6.14e-6 1.52e-8"
-    }
-  }
-}
